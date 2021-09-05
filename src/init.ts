@@ -96,13 +96,13 @@ const init = async (context: vscode.ExtensionContext) => {
 
           let assocTerminal = terminals[vsCommand]
 
-					if (singleInstance && assocTerminal !== null) {
-						delete terminals[vsCommand]
+					if (singleInstance && assocTerminal != null) {
+            delete terminals[vsCommand]
 						assocTerminal.dispose()
 						assocTerminal = null
 					}
 
-					if (assocTerminal === null) {
+					if (assocTerminal == null) {
             assocTerminal = vscode.window.createTerminal({ name, cwd: vars.cwd })
 						terminals[vsCommand] = assocTerminal
           }

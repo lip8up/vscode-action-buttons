@@ -9,7 +9,7 @@ export const getPackageJson = async (): Promise<any> =>
       const packageJson = require(`${cwd}/package.json`)
       resolve(packageJson)
     } catch (e) {
-      resolve({})
+      resolve(null)
     }
   })
 
