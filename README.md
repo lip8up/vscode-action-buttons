@@ -11,3 +11,7 @@
   clear?: boolean
 }
 ```
+
+## 手动发布
+
+https://marketplace.visualstudio.com/manage/publishers/lip8up

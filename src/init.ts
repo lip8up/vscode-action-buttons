@@ -1,4 +1,4 @@
-import { buildConfigFromPackageJson } from './packageJson'
+import { getNpmScriptCommands, getDevConfigCommands } from './config'
 import * as vscode from 'vscode'
 import { RunButton } from './types'
 import * as path from 'path'
@@ -39,8 +39,10 @@ const init = async (context: vscode.ExtensionContext) => {
     commands.push(...cmds)
   }
 
+  commands.push(...(await getDevConfigCommands(defaultColor)))
+
   if (loadNpmCommands !== false) {
-		commands.push(...(await buildConfigFromPackageJson(defaultColor)))
+		commands.push(...(await getNpmScriptCommands(defaultColor)))
 	}
 
   console.log({ commands })
