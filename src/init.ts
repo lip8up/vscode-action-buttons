@@ -1,6 +1,6 @@
 import { getNpmScriptCommands, getDevConfigCommands } from './config'
 import * as vscode from 'vscode'
-import { RunButton } from './types'
+import { RunButton, NpmCommandsConfig } from './types'
 import * as path from 'path'
 
 const registerCommand = vscode.commands.registerCommand
@@ -13,6 +13,7 @@ const init = async (context: vscode.ExtensionContext) => {
   const defaultColor = config.get<string>('defaultColor') || 'white'
   const reloadButton = config.get<string>('reloadButton')
   const loadNpmCommands = config.get<boolean>('loadNpmCommands')
+  const npmCommandsConfig = config.get<NpmCommandsConfig[]>('npmCommandsConfig')
   const cmds = config.get<RunButton[]>('commands')
   const commands = []
 
@@ -42,10 +43,10 @@ const init = async (context: vscode.ExtensionContext) => {
   commands.push(...(await getDevConfigCommands(defaultColor)))
 
   if (loadNpmCommands !== false) {
-		commands.push(...(await getNpmScriptCommands(defaultColor)))
+		commands.push(...(await getNpmScriptCommands(defaultColor, npmCommandsConfig || [])))
 	}
 
-  console.log({ commands })
+  // console.log({ commands })
 
   if (commands.length) {
     const terminals: { [name: string]: vscode.Terminal | null } = {}

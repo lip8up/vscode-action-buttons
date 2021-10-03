@@ -2,7 +2,7 @@
 	"name": "vscode-action-buttons",
 	"displayName": "Action Buttons",
 	"description": "",
-	"version": "1.3.0",
+	"version": "1.6.8",
 	"publisher": "lip8up",
 	"repository": {
 		"type": "git",
@@ -101,6 +101,39 @@
 						},
 						"loadNpmCommands": {
 							"type": "boolean",
+							"required": false
+						},
+						"npmCommandsConfig": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string",
+										"required": true
+									},
+									"ignore": {
+										"type": "boolean",
+										"required": false
+									},
+									"singleInstance": {
+										"type": "boolean",
+										"required": false
+									},
+									"color": {
+										"type": "string",
+										"required": false
+									},
+									"silent": {
+										"type": "boolean",
+										"required": false
+									},
+									"clear": {
+										"type": "boolean",
+										"required": false
+									}
+								}
+							},
 							"required": false
 						}
 					}
